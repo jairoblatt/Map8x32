@@ -31,7 +31,18 @@ Map8x32 is a lightweight, concurrent key-value database designed for maximum per
 - GET: `[status: u8][count: u32][values: u32...]`
 
 
-### Benchmark
+
+
+## Performance Results
+
+### Benchmark Configuration
+- **Test Environment**: Unix sockets, binary protocol
+- **Concurrency**: 10-100 simultaneous connections
+- **Operations**: Mixed SET/GET with data validation
+- **Key Range**: 0-127 (u8)
+- **Value Range**: 0-4,294,967,295 (u32)
+
+### Benchmark Result
 ```txt
 Running test with 10 concurrent users for 10s
 Starting benchmark test...
@@ -119,15 +130,6 @@ Response Times:
 ==================================================
 
 ```
-
-## Performance Results
-
-### Benchmark Configuration
-- **Test Environment**: Unix sockets, binary protocol
-- **Concurrency**: 10-100 simultaneous connections
-- **Operations**: Mixed SET/GET with data validation
-- **Key Range**: 0-127 (u8)
-- **Value Range**: 0-4,294,967,295 (u32)
 
 ## Usage
 
