@@ -5,4 +5,3 @@ edition = "2021"
 
 [dependencies]
 tokio = { version = "1.0", features = ["full"] }
-fastrand = "2.0"

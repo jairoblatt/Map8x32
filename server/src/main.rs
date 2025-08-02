@@ -16,7 +16,6 @@ const STATUS_NOT_FOUND: u8 = 0;
 const STATUS_OK: u8 = 1;
 const STATUS_BAD_REQUEST: u8 = 2;
 
-
 #[tokio::main]
 async fn main() -> io::Result<()> {
     let storage: StorageType = Arc::new(DashMap::new());
@@ -81,10 +80,7 @@ async fn main() -> io::Result<()> {
                         }
                     }
                     OP_DELETE_BY_KEY => {
-
-                        if let Some(_) = storage_clone.get(&key) {
-
-                            storage_clone.remove(&key);
+                        if storage_clone.remove(&key).is_some() {
                             if socket.write_u8(STATUS_OK).await.is_err() {
                                 break;
                             }
@@ -105,7 +101,11 @@ async fn main() -> io::Result<()> {
                             break;
                         }
 
-                        if socket.write_u32_le(storage_clone.len() as u32).await.is_err() {
+                        if socket
+                            .write_u32_le(storage_clone.len() as u32)
+                            .await
+                            .is_err()
+                        {
                             break;
                         }
 
