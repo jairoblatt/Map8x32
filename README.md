@@ -35,100 +35,21 @@ Map8x32 is a lightweight, concurrent key-value database designed for maximum per
 
 ## Performance Results
 
-### Benchmark Configuration
-- **Test Environment**: Unix sockets, binary protocol
-- **Concurrency**: 10-100 simultaneous connections
-- **Operations**: Mixed SET/GET with data validation
-- **Key Range**: 0-127 (u8)
-- **Value Range**: 0-4,294,967,295 (u32)
-
-### Benchmark Result
 ```txt
-Running test with 10 concurrent users for 10s
-Starting benchmark test...
-Socket: /tmp/map8x32.sock
-Max concurrent users: 10
-Duration: 10s
-
-Benchmark Results:
-==================
-Total requests: 44596
-Successful requests: 0
-Failed requests: 44596
-Success rate: 0.00%
-Requests per second: 4458.31
-Duration: 10.0028876s
-
-Response Times:
-  Average: 33.689µs
-  Minimum: 12.554µs
-  Maximum: 885.881µs
-  95th percentile: 69.382µs
-==================================================
-Running test with 50 concurrent users for 20s
-Starting benchmark test...
-Socket: /tmp/map8x32.sock
-Max concurrent users: 50
-Duration: 20s
-
-Benchmark Results:
-==================
-Total requests: 425214
-Successful requests: 0
-Failed requests: 425214
-Success rate: 0.00%
-Requests per second: 21252.53
-Duration: 20.007685439s
-
-Response Times:
-  Average: 25.317µs
-  Minimum: 12.193µs
-  Maximum: 1.093697ms
-  95th percentile: 52.179µs
-==================================================
-Running test with 100 concurrent users for 15s
-Starting benchmark test...
-Socket: /tmp/map8x32.sock
-Max concurrent users: 100
-Duration: 15s
-
-Benchmark Results:
-==================
-Total requests: 565624
-Successful requests: 0
-Failed requests: 565624
-Success rate: 0.00%
-Requests per second: 37676.95
-Duration: 15.012466078s
-
-Response Times:
-  Average: 21.77µs
-  Minimum: 12.193µs
-  Maximum: 7.443448ms
-  95th percentile: 36.009µs
-==================================================
-Running test with 50 concurrent users for 10s
-Starting benchmark test...
-Socket: /tmp/map8x32.sock
-Max concurrent users: 50
-Duration: 10s
-
-Benchmark Results:
-==================
-Total requests: 214305
-Successful requests: 0
-Failed requests: 214305
-Success rate: 0.00%
-Requests per second: 21424.70
-Duration: 10.002705831s
-
-Response Times:
-  Average: 23.945µs
-  Minimum: 12.274µs
-  Maximum: 767.618µs
-  95th percentile: 47.7µs
-==================================================
-
+MAP8X32 BENCHMARK
+=================
+SET Operations:
+  50000 ops - min: 76μs, avg: 114μs, max: 849μs, p99: 194μs (8748 ops/sec)
+GET Operations:
+  50000 ops - min: 523μs, avg: 739μs, max: 5461μs, p99: 1202μs (1352 ops/sec)
+DELETE Operations:
+  50000 ops - min: 75μs, avg: 105μs, max: 1170μs, p99: 178μs (9493 ops/sec)
+LIST Operations:
+  50 ops - min: 134μs, avg: 147μs, max: 229μs, p99: 229μs (6774 ops/sec)
+Consistency Test:
+  PASS
+Concurrent Test (20 workers, 100 ops each):
+  2000 ops - min: 243μs, avg: 885μs, max: 2122μs, p99: 1566μs (1130 ops/sec)
 ```
 
 ## Usage
